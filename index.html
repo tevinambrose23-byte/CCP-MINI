@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tourism Intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>🌍 Tourism AI</h2>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <h1>Tourism Dashboard</h1>
+
+        <!-- FILTER -->
+        <form method="POST">
+            <select name="year" onchange="this.form.submit()">
+                <option value="2017" {% if selected_year=="2017" %}selected{% endif %}>2017</option>
+                <option value="2018" {% if selected_year=="2018" %}selected{% endif %}>2018</option>
+                <option value="2019" {% if selected_year=="2019" %}selected{% endif %}>2019</option>
+                <option value="2020" {% if selected_year=="2020" %}selected{% endif %}>2020</option>
+                <option value="2021" {% if selected_year=="2021" %}selected{% endif %}>2021</option>
+            </select>
+        </form>
+
+        <!-- KPI CARDS -->
+        <div class="kpi-container">
+            <div class="kpi">
+                <h3>Total Tourists</h3>
+                <p>{{ total }}</p>
+            </div>
+
+            <div class="kpi">
+                <h3>Growth %</h3>
+                <p>{{ growth }}%</p>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE CHART -->
+        <div class="card">
+            {{ chart | safe }}
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
